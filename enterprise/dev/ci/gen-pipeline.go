@@ -166,6 +166,7 @@ func main() {
 	}
 
 	pipeline.AddStep(":go:",
+		bk.Cmd("dropdb --if-exists sourcegraph-test-db"),
 		bk.Cmd("go test -coverprofile=coverage.txt -covermode=atomic -race ./..."),
 		bk.ArtifactPaths("coverage.txt"))
 
